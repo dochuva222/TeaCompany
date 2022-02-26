@@ -157,7 +157,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_ProductionHistory_Tea">
-    <End Type="TeaCompanyModel.Tea" Role="Tea" Multiplicity="1" />
+    <End Type="TeaCompanyModel.Tea" Role="Tea" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Type="TeaCompanyModel.ProductionHistory" Role="ProductionHistory" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Tea">
@@ -169,7 +171,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_ProductionHistory_User">
-    <End Type="TeaCompanyModel.User" Role="User" Multiplicity="1" />
+    <End Type="TeaCompanyModel.User" Role="User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Type="TeaCompanyModel.ProductionHistory" Role="ProductionHistory" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="User">
@@ -193,7 +197,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Sale_Shop">
-    <End Type="TeaCompanyModel.Shop" Role="Shop" Multiplicity="1" />
+    <End Type="TeaCompanyModel.Shop" Role="Shop" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Type="TeaCompanyModel.Sale" Role="Sale" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Shop">
@@ -217,7 +223,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Sale_User">
-    <End Type="TeaCompanyModel.User" Role="User" Multiplicity="1" />
+    <End Type="TeaCompanyModel.User" Role="User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Type="TeaCompanyModel.Sale" Role="Sale" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="User">

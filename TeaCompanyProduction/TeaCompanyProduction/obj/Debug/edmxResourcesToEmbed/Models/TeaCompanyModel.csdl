@@ -5,6 +5,7 @@
     <EntitySet Name="ProductionHistory" EntityType="TeaCompanyModel.ProductionHistory" />
     <EntitySet Name="Role" EntityType="TeaCompanyModel.Role" />
     <EntitySet Name="Sale" EntityType="TeaCompanyModel.Sale" />
+    <EntitySet Name="Shop" EntityType="TeaCompanyModel.Shop" />
     <EntitySet Name="sysdiagrams" EntityType="TeaCompanyModel.sysdiagrams" />
     <EntitySet Name="Tea" EntityType="TeaCompanyModel.Tea" />
     <EntitySet Name="Type" EntityType="TeaCompanyModel.Type" />
@@ -25,8 +26,16 @@
       <End Role="Role" EntitySet="Role" />
       <End Role="User" EntitySet="User" />
     </AssociationSet>
+    <AssociationSet Name="FK_Sale_Shop" Association="TeaCompanyModel.FK_Sale_Shop">
+      <End Role="Shop" EntitySet="Shop" />
+      <End Role="Sale" EntitySet="Sale" />
+    </AssociationSet>
     <AssociationSet Name="FK_Sale_Tea" Association="TeaCompanyModel.FK_Sale_Tea">
       <End Role="Tea" EntitySet="Tea" />
+      <End Role="Sale" EntitySet="Sale" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sale_User" Association="TeaCompanyModel.FK_Sale_User">
+      <End Role="User" EntitySet="User" />
       <End Role="Sale" EntitySet="Sale" />
     </AssociationSet>
     <AssociationSet Name="FK_Tea_Type" Association="TeaCompanyModel.FK_Tea_Type">
@@ -70,7 +79,22 @@
     <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="TeaId" Type="Int32" Nullable="false" />
     <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="ShopId" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Shop" Relationship="TeaCompanyModel.FK_Sale_Shop" FromRole="Sale" ToRole="Shop" />
     <NavigationProperty Name="Tea" Relationship="TeaCompanyModel.FK_Sale_Tea" FromRole="Sale" ToRole="Tea" />
+    <NavigationProperty Name="User" Relationship="TeaCompanyModel.FK_Sale_User" FromRole="Sale" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Shop">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Sale" Relationship="TeaCompanyModel.FK_Sale_Shop" FromRole="Shop" ToRole="Sale" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -118,6 +142,7 @@
     <Property Name="RoleId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="ProductionHistory" Relationship="TeaCompanyModel.FK_ProductionHistory_User" FromRole="User" ToRole="ProductionHistory" />
     <NavigationProperty Name="Role" Relationship="TeaCompanyModel.FK_User_Role" FromRole="User" ToRole="Role" />
+    <NavigationProperty Name="Sale" Relationship="TeaCompanyModel.FK_Sale_User" FromRole="User" ToRole="Sale" />
   </EntityType>
   <Association Name="FK_Tea_Grade">
     <End Type="TeaCompanyModel.Grade" Role="Grade" Multiplicity="1" />
@@ -132,7 +157,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_ProductionHistory_Tea">
-    <End Type="TeaCompanyModel.Tea" Role="Tea" Multiplicity="1" />
+    <End Type="TeaCompanyModel.Tea" Role="Tea" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Type="TeaCompanyModel.ProductionHistory" Role="ProductionHistory" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Tea">
@@ -144,7 +171,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_ProductionHistory_User">
-    <End Type="TeaCompanyModel.User" Role="User" Multiplicity="1" />
+    <End Type="TeaCompanyModel.User" Role="User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Type="TeaCompanyModel.ProductionHistory" Role="ProductionHistory" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="User">
@@ -167,6 +196,20 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Sale_Shop">
+    <End Type="TeaCompanyModel.Shop" Role="Shop" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="TeaCompanyModel.Sale" Role="Sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shop">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sale">
+        <PropertyRef Name="ShopId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Sale_Tea">
     <End Type="TeaCompanyModel.Tea" Role="Tea" Multiplicity="1" />
     <End Type="TeaCompanyModel.Sale" Role="Sale" Multiplicity="*" />
@@ -176,6 +219,20 @@
       </Principal>
       <Dependent Role="Sale">
         <PropertyRef Name="TeaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sale_User">
+    <End Type="TeaCompanyModel.User" Role="User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="TeaCompanyModel.Sale" Role="Sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sale">
+        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -52,7 +52,12 @@ namespace TeaCompanyProduction.Pages
                 MessageBox.Show("Выберите чай", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            GlobalSettings.DB.Tea.FirstOrDefault(t => t.Id == selectedTea.Id).InStock += int.Parse(TBQauntity.Text);
+            if (!int.TryParse(TBQauntity.Text, out int quantity))
+            {
+                MessageBox.Show("Некорректное количество", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            GlobalSettings.DB.Tea.FirstOrDefault(t => t.Id == selectedTea.Id).InStock += quantity;
             GlobalSettings.DB.ProductionHistory.Add(new ProductionHistory() { DateTime = DateTime.Now, ProducedQuantity = int.Parse(TBQauntity.Text), TeaId = selectedTea.Id, UserId = GlobalSettings.LoggedUser.Id });
             GlobalSettings.DB.SaveChanges();
             Refresh();

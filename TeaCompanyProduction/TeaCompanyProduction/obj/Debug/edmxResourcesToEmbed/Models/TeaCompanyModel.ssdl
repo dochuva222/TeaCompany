@@ -32,6 +32,18 @@
     <Property Name="DateTime" Type="datetime" Nullable="false" />
     <Property Name="TeaId" Type="int" Nullable="false" />
     <Property Name="Quantity" Type="int" Nullable="false" />
+    <Property Name="ShopId" Type="int" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Shop">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Image" Type="image" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -74,7 +86,9 @@
     <Property Name="RoleId" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="FK_ProductionHistory_Tea">
-    <End Role="Tea" Type="Self.Tea" Multiplicity="1" />
+    <End Role="Tea" Type="Self.Tea" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="ProductionHistory" Type="Self.ProductionHistory" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Tea">
@@ -86,7 +100,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_ProductionHistory_User">
-    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="ProductionHistory" Type="Self.ProductionHistory" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="User">
@@ -94,6 +110,20 @@
       </Principal>
       <Dependent Role="ProductionHistory">
         <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sale_Shop">
+    <End Role="Shop" Type="Self.Shop" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shop">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sale">
+        <PropertyRef Name="ShopId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -106,6 +136,20 @@
       </Principal>
       <Dependent Role="Sale">
         <PropertyRef Name="TeaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sale_User">
+    <End Role="User" Type="Self.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sale">
+        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -150,6 +194,7 @@
     <EntitySet Name="ProductionHistory" EntityType="Self.ProductionHistory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Sale" EntityType="Self.Sale" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Shop" EntityType="Self.Shop" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tea" EntityType="Self.Tea" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Type" EntityType="Self.Type" Schema="dbo" store:Type="Tables" />
@@ -162,8 +207,16 @@
       <End Role="User" EntitySet="User" />
       <End Role="ProductionHistory" EntitySet="ProductionHistory" />
     </AssociationSet>
+    <AssociationSet Name="FK_Sale_Shop" Association="Self.FK_Sale_Shop">
+      <End Role="Shop" EntitySet="Shop" />
+      <End Role="Sale" EntitySet="Sale" />
+    </AssociationSet>
     <AssociationSet Name="FK_Sale_Tea" Association="Self.FK_Sale_Tea">
       <End Role="Tea" EntitySet="Tea" />
+      <End Role="Sale" EntitySet="Sale" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sale_User" Association="Self.FK_Sale_User">
+      <End Role="User" EntitySet="User" />
       <End Role="Sale" EntitySet="Sale" />
     </AssociationSet>
     <AssociationSet Name="FK_Tea_Grade" Association="Self.FK_Tea_Grade">

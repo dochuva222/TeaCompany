@@ -86,7 +86,9 @@
     <Property Name="RoleId" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="FK_ProductionHistory_Tea">
-    <End Role="Tea" Type="Self.Tea" Multiplicity="1" />
+    <End Role="Tea" Type="Self.Tea" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="ProductionHistory" Type="Self.ProductionHistory" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Tea">
@@ -98,7 +100,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_ProductionHistory_User">
-    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="ProductionHistory" Type="Self.ProductionHistory" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="User">
@@ -110,7 +114,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Sale_Shop">
-    <End Role="Shop" Type="Self.Shop" Multiplicity="1" />
+    <End Role="Shop" Type="Self.Shop" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Shop">
@@ -134,7 +140,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Sale_User">
-    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="User">
