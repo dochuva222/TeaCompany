@@ -20,7 +20,6 @@
                     Click="BListOfTea_Click" />
             <Button x:Name="BAddInStock"
                     Content="Оформить приход"
-                    
                     Click="BAddInStock_Click" />
             <Button x:Name="BProductionHistory"
                     Content="История производства"

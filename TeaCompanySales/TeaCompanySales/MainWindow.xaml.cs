@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TeaCompanySales.Pages;
 
 namespace TeaCompanySales
 {
@@ -23,6 +24,7 @@ namespace TeaCompanySales
         public MainWindow()
         {
             InitializeComponent();
+            MainFrame.Navigate(new LoginPage());
         }
     }
 }

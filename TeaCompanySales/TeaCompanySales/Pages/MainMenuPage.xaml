@@ -1,0 +1,35 @@
+﻿<Page x:Class="TeaCompanySales.Pages.MainMenuPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:TeaCompanySales.Pages"
+      mc:Ignorable="d"
+      d:DesignHeight="450"
+      d:DesignWidth="800"
+      Title="MainMenuPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <Button x:Name="BShopList"
+                    Content="Список магазинов"
+                    Click="BShopList_Click" />
+            <Button x:Name="BListOfTea"
+                    Content="Список чая"
+                    Click="BListOfTea_Click" />
+            <Button x:Name="BSale"
+                    Content="Оформить продажу"
+                    Click="BSale_Click" />
+            <Button x:Name="BSaleHistory"
+                    Content="История продаж"
+                    Click="BSaleHistory_Click" />
+        </StackPanel>
+        <Frame x:Name="MainMenuFrame"
+               Grid.Column="1"
+               NavigationUIVisibility="Hidden" />
+    </Grid>
+</Page>

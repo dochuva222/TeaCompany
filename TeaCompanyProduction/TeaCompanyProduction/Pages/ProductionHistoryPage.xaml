@@ -11,20 +11,25 @@
       Loaded="Page_Loaded">
 
     <Grid>
-        <DataGrid x:Name="DGHistory"
-                  IsReadOnly="True"
-                  ColumnWidth="*"
-                  AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Чай"
-                                    Binding="{Binding Tea.Name}" />
-                <DataGridTextColumn Header="Количество"
-                                    Binding="{Binding ProducedQuantity}" />
-                <DataGridTextColumn Header="Дата/время"
-                                    Binding="{Binding DateTime}" />
-                <DataGridTextColumn Header="Сотрудник"
-                                    Binding="{Binding User.FullName}" />
-            </DataGrid.Columns>
-        </DataGrid>
+        <StackPanel>
+            <Label Content="История производства"
+                   FontSize="20" />
+            <DataGrid x:Name="DGHistory"
+                      IsReadOnly="True"
+                      ColumnWidth="*"
+                      AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Чай"
+                                        Binding="{Binding Tea.Name}" />
+                    <DataGridTextColumn Header="Количество"
+                                        Binding="{Binding ProducedQuantity}" />
+                    <DataGridTextColumn Header="Дата/время"
+                                        Binding="{Binding DateTime}" />
+                    <DataGridTextColumn Header="Сотрудник"
+                                        Binding="{Binding User.FullName}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+
     </Grid>
 </Page>

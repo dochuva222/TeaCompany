@@ -76,7 +76,31 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\ListOfTeaPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MainMenuPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SaleHistoryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SalePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ShopListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ShopPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -86,6 +110,7 @@
     <Compile Include="Models\Grade.cs">
       <DependentUpon>TeaCompanyModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Partials\Sale.cs" />
     <Compile Include="Models\Partials\User.cs" />
     <Compile Include="Models\ProductionHistory.cs">
       <DependentUpon>TeaCompanyModel.tt</DependentUpon>
@@ -94,6 +119,9 @@
       <DependentUpon>TeaCompanyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Sale.cs">
+      <DependentUpon>TeaCompanyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Shop.cs">
       <DependentUpon>TeaCompanyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagrams.cs">
@@ -124,8 +152,26 @@
     <Compile Include="Models\User.cs">
       <DependentUpon>TeaCompanyModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ListOfTeaPage.xaml.cs">
+      <DependentUpon>ListOfTeaPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MainMenuPage.xaml.cs">
+      <DependentUpon>MainMenuPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SaleHistoryPage.xaml.cs">
+      <DependentUpon>SaleHistoryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SalePage.xaml.cs">
+      <DependentUpon>SalePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ShopListPage.xaml.cs">
+      <DependentUpon>ShopListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ShopPage.xaml.cs">
+      <DependentUpon>ShopPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

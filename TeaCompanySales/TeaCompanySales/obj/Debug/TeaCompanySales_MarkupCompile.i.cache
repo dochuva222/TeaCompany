@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\GitHubRepositories\TeaCompany\TeaCompanySales\TeaCompanySales\App.xaml
-2563972398
+8-45334185
 2-1291310860
-211144751726
+29-983829749
 18675494910
-MainWindow.xaml;Pages\LoginPage.xaml;
+MainWindow.xaml;Pages\ListOfTeaPage.xaml;Pages\LoginPage.xaml;Pages\MainMenuPage.xaml;Pages\SaleHistoryPage.xaml;Pages\SalePage.xaml;Pages\ShopListPage.xaml;Pages\ShopPage.xaml;
 
-False
+True
 

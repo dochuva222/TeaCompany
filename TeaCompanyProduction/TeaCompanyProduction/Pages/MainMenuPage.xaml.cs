@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace TeaCompanyProduction.Pages
 {
-    /// <summary>
-    /// Interaction logic for MainMenuPage.xaml
-    /// </summary>
     public partial class MainMenuPage : Page
     {
         public MainMenuPage()

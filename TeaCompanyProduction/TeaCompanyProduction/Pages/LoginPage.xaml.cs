@@ -26,7 +26,7 @@ namespace TeaCompanyProduction.Pages
         private void BLogin_Click(object sender, RoutedEventArgs e)
         {
             var loggedUser = GlobalSettings.DB.User.FirstOrDefault(u => u.Login == TBLogin.Text && u.Password == PBPassword.Password);
-            if(loggedUser == null || loggedUser.RoleId != 1)
+            if (loggedUser == null || loggedUser.RoleId != 1)
             {
                 MessageBox.Show("Неверный логин или пароль", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;

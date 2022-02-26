@@ -17,7 +17,8 @@
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
         <StackPanel>
-            <Label Content="Список чая" />
+            <Label Content="Список чая"
+                   FontSize="20" />
             <StackPanel Orientation="Horizontal">
                 <Label Content="Поиск: " />
                 <TextBox x:Name="TBSearch"
@@ -61,7 +62,8 @@
                         <StackPanel VerticalAlignment="Bottom"
                                     Height="120"
                                     Margin="5,0,0,0">
-                            <TextBlock Text="{Binding Name, StringFormat='{}Название: {0}'}"
+                            <TextBlock Text="{Binding Name}"
+                                       FontSize="20"
                                        TextAlignment="Center" />
                             <TextBlock Text="{Binding Description}"
                                        TextAlignment="Center"

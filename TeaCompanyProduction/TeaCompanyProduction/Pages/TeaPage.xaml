@@ -48,8 +48,8 @@
                    Source="{Binding Image, TargetNullValue={StaticResource DefaultTeaImage}}" />
             <Button x:Name="BLoadPhoto"
                     Content="Выбрать изображение"
-                    Click="BLoadPhoto_Click" 
-                    HorizontalAlignment="Center"/>
+                    Click="BLoadPhoto_Click"
+                    HorizontalAlignment="Center" />
         </StackPanel>
     </Grid>
 </Page>

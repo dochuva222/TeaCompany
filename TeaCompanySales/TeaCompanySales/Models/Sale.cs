@@ -18,7 +18,12 @@ namespace TeaCompanySales.Models
         public System.DateTime DateTime { get; set; }
         public int TeaId { get; set; }
         public int Quantity { get; set; }
+        public int ShopId { get; set; }
+        public decimal Price { get; set; }
+        public int UserId { get; set; }
     
+        public virtual Shop Shop { get; set; }
         public virtual Tea Tea { get; set; }
+        public virtual User User { get; set; }
     }
 }

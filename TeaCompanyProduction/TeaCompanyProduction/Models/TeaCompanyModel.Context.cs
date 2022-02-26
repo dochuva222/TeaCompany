@@ -29,6 +29,7 @@ namespace TeaCompanyProduction.Models
         public virtual DbSet<ProductionHistory> ProductionHistory { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<Sale> Sale { get; set; }
+        public virtual DbSet<Shop> Shop { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Tea> Tea { get; set; }
         public virtual DbSet<Type> Type { get; set; }

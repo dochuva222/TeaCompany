@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TeaCompanyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="TeaCompanyEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Grade" EntityType="TeaCompanyModel.Grade" />
+    <EntitySet Name="ProductionHistory" EntityType="TeaCompanyModel.ProductionHistory" />
+    <EntitySet Name="Role" EntityType="TeaCompanyModel.Role" />
+    <EntitySet Name="Sale" EntityType="TeaCompanyModel.Sale" />
+    <EntitySet Name="Shop" EntityType="TeaCompanyModel.Shop" />
+    <EntitySet Name="sysdiagrams" EntityType="TeaCompanyModel.sysdiagrams" />
+    <EntitySet Name="Tea" EntityType="TeaCompanyModel.Tea" />
+    <EntitySet Name="Type" EntityType="TeaCompanyModel.Type" />
+    <EntitySet Name="User" EntityType="TeaCompanyModel.User" />
+    <AssociationSet Name="FK_Tea_Grade" Association="TeaCompanyModel.FK_Tea_Grade">
+      <End Role="Grade" EntitySet="Grade" />
+      <End Role="Tea" EntitySet="Tea" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductionHistory_Tea" Association="TeaCompanyModel.FK_ProductionHistory_Tea">
+      <End Role="Tea" EntitySet="Tea" />
+      <End Role="ProductionHistory" EntitySet="ProductionHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductionHistory_User" Association="TeaCompanyModel.FK_ProductionHistory_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="ProductionHistory" EntitySet="ProductionHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Role" Association="TeaCompanyModel.FK_User_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sale_Shop" Association="TeaCompanyModel.FK_Sale_Shop">
+      <End Role="Shop" EntitySet="Shop" />
+      <End Role="Sale" EntitySet="Sale" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sale_Tea" Association="TeaCompanyModel.FK_Sale_Tea">
+      <End Role="Tea" EntitySet="Tea" />
+      <End Role="Sale" EntitySet="Sale" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sale_User" Association="TeaCompanyModel.FK_Sale_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Sale" EntitySet="Sale" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tea_Type" Association="TeaCompanyModel.FK_Tea_Type">
+      <End Role="Type" EntitySet="Type" />
+      <End Role="Tea" EntitySet="Tea" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Grade">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Tea" Relationship="TeaCompanyModel.FK_Tea_Grade" FromRole="Grade" ToRole="Tea" />
+  </EntityType>
+  <EntityType Name="ProductionHistory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TeaId" Type="Int32" Nullable="false" />
+    <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ProducedQuantity" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Tea" Relationship="TeaCompanyModel.FK_ProductionHistory_Tea" FromRole="ProductionHistory" ToRole="Tea" />
+    <NavigationProperty Name="User" Relationship="TeaCompanyModel.FK_ProductionHistory_User" FromRole="ProductionHistory" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="User" Relationship="TeaCompanyModel.FK_User_Role" FromRole="Role" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Sale">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TeaId" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="ShopId" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Shop" Relationship="TeaCompanyModel.FK_Sale_Shop" FromRole="Sale" ToRole="Shop" />
+    <NavigationProperty Name="Tea" Relationship="TeaCompanyModel.FK_Sale_Tea" FromRole="Sale" ToRole="Tea" />
+    <NavigationProperty Name="User" Relationship="TeaCompanyModel.FK_Sale_User" FromRole="Sale" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Shop">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Sale" Relationship="TeaCompanyModel.FK_Sale_Shop" FromRole="Shop" ToRole="Sale" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Tea">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TypeId" Type="Int32" Nullable="false" />
+    <Property Name="InStock" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="GradeId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Grade" Relationship="TeaCompanyModel.FK_Tea_Grade" FromRole="Tea" ToRole="Grade" />
+    <NavigationProperty Name="ProductionHistory" Relationship="TeaCompanyModel.FK_ProductionHistory_Tea" FromRole="Tea" ToRole="ProductionHistory" />
+    <NavigationProperty Name="Sale" Relationship="TeaCompanyModel.FK_Sale_Tea" FromRole="Tea" ToRole="Sale" />
+    <NavigationProperty Name="Type" Relationship="TeaCompanyModel.FK_Tea_Type" FromRole="Tea" ToRole="Type" />
+  </EntityType>
+  <EntityType Name="Type">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Tea" Relationship="TeaCompanyModel.FK_Tea_Type" FromRole="Type" ToRole="Tea" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ProductionHistory" Relationship="TeaCompanyModel.FK_ProductionHistory_User" FromRole="User" ToRole="ProductionHistory" />
+    <NavigationProperty Name="Role" Relationship="TeaCompanyModel.FK_User_Role" FromRole="User" ToRole="Role" />
+    <NavigationProperty Name="Sale" Relationship="TeaCompanyModel.FK_Sale_User" FromRole="User" ToRole="Sale" />
+  </EntityType>
+  <Association Name="FK_Tea_Grade">
+    <End Type="TeaCompanyModel.Grade" Role="Grade" Multiplicity="1" />
+    <End Type="TeaCompanyModel.Tea" Role="Tea" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Grade">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tea">
+        <PropertyRef Name="GradeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductionHistory_Tea">
+    <End Type="TeaCompanyModel.Tea" Role="Tea" Multiplicity="1" />
+    <End Type="TeaCompanyModel.ProductionHistory" Role="ProductionHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tea">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductionHistory">
+        <PropertyRef Name="TeaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductionHistory_User">
+    <End Type="TeaCompanyModel.User" Role="User" Multiplicity="1" />
+    <End Type="TeaCompanyModel.ProductionHistory" Role="ProductionHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductionHistory">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Role">
+    <End Type="TeaCompanyModel.Role" Role="Role" Multiplicity="1" />
+    <End Type="TeaCompanyModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sale_Shop">
+    <End Type="TeaCompanyModel.Shop" Role="Shop" Multiplicity="1" />
+    <End Type="TeaCompanyModel.Sale" Role="Sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shop">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sale">
+        <PropertyRef Name="ShopId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sale_Tea">
+    <End Type="TeaCompanyModel.Tea" Role="Tea" Multiplicity="1" />
+    <End Type="TeaCompanyModel.Sale" Role="Sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tea">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sale">
+        <PropertyRef Name="TeaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sale_User">
+    <End Type="TeaCompanyModel.User" Role="User" Multiplicity="1" />
+    <End Type="TeaCompanyModel.Sale" Role="Sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sale">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tea_Type">
+    <End Type="TeaCompanyModel.Type" Role="Type" Multiplicity="1" />
+    <End Type="TeaCompanyModel.Tea" Role="Tea" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Type">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tea">
+        <PropertyRef Name="TypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

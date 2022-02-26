@@ -13,6 +13,8 @@
         <ScrollViewer>
             <StackPanel HorizontalAlignment="Center"
                         Width="300">
+                <Label Content="Оформление прихода"
+                       FontSize="20" />
                 <Label Content="Чай" />
                 <StackPanel Orientation="Horizontal">
                     <ComboBox x:Name="CBTeas"

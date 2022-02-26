@@ -16,9 +16,6 @@ using TeaCompanyProduction.Models;
 
 namespace TeaCompanyProduction.Pages
 {
-    /// <summary>
-    /// Interaction logic for ListOfTeaPage.xaml
-    /// </summary>
     public partial class ListOfTeaPage : Page
     {
         public ListOfTeaPage()
@@ -94,7 +91,6 @@ namespace TeaCompanyProduction.Pages
                 GlobalSettings.DB.SaveChanges();
                 Refresh();
             }
-
         }
     }
 }

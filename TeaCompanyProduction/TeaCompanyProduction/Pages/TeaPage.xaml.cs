@@ -36,7 +36,7 @@ namespace TeaCompanyProduction.Pages
 
             if (string.IsNullOrWhiteSpace(contextTea.Name))
                 errorMessage += "Введите название\n";
-            if(contextTea.Type == null)
+            if (contextTea.Type == null)
                 errorMessage += "Выберите тип чая\n";
             if (contextTea.Grade == null)
                 errorMessage += "Выберите сорт чая\n";
@@ -58,13 +58,12 @@ namespace TeaCompanyProduction.Pages
 
         private void BLoadPhoto_Click(object sender, RoutedEventArgs e)
         {
-            var dialog = new OpenFileDialog() { Filter = ".jpg, .jpeg, .png|*.jpg; *.jpeg; *.png"};
+            var dialog = new OpenFileDialog() { Filter = ".jpg, .jpeg, .png|*.jpg; *.jpeg; *.png" };
             if (dialog.ShowDialog().GetValueOrDefault())
             {
                 contextTea.Image = File.ReadAllBytes(dialog.FileName);
                 TeaImage.Source = Tools.BytesToImage(contextTea.Image);
             }
-
         }
     }
 }

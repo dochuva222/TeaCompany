@@ -32,7 +32,7 @@ namespace TeaCompanySales.Pages
                 return;
             }
             GlobalSettings.LoggedUser = loggedUser;
-            //NavigationService.Navigate(new MainMenuPage());
+            NavigationService.Navigate(new MainMenuPage());
         }
 
         private void BClose_Click(object sender, RoutedEventArgs e)

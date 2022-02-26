@@ -18,6 +18,7 @@ namespace TeaCompanySales.Models
         public User()
         {
             this.ProductionHistory = new HashSet<ProductionHistory>();
+            this.Sale = new HashSet<Sale>();
         }
     
         public int Id { get; set; }
@@ -30,5 +31,7 @@ namespace TeaCompanySales.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductionHistory> ProductionHistory { get; set; }
         public virtual Role Role { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Sale> Sale { get; set; }
     }
 }

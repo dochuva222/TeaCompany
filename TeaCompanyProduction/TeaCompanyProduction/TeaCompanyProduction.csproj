@@ -116,6 +116,9 @@
     <Compile Include="Models\Sale.cs">
       <DependentUpon>TeaCompanyModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Shop.cs">
+      <DependentUpon>TeaCompanyModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>TeaCompanyModel.tt</DependentUpon>
     </Compile>
