@@ -5,16 +5,18 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="96f5b6eed6f246feacc5784441cdae35" Name="Diagram1">
-        <EntityTypeShape EntityType="TeaCompanyModel.Grade" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="TeaCompanyModel.Grade" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="TeaCompanyModel.ProductionHistory" Width="1.5" PointX="5.25" PointY="3.375" />
+        <EntityTypeShape EntityType="TeaCompanyModel.Role" Width="1.5" PointX="0.75" PointY="8.75" />
         <EntityTypeShape EntityType="TeaCompanyModel.Sale" Width="1.5" PointX="5.25" PointY="6.625" />
         <EntityTypeShape EntityType="TeaCompanyModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="1.625" />
         <EntityTypeShape EntityType="TeaCompanyModel.Tea" Width="1.5" PointX="3" PointY="3" />
-        <EntityTypeShape EntityType="TeaCompanyModel.Type" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="TeaCompanyModel.User" Width="1.5" PointX="3" PointY="8.5" />
+        <EntityTypeShape EntityType="TeaCompanyModel.Type" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="TeaCompanyModel.User" Width="1.5" PointX="3" PointY="8.25" />
         <AssociationConnector Association="TeaCompanyModel.FK_Tea_Grade" />
         <AssociationConnector Association="TeaCompanyModel.FK_ProductionHistory_Tea" />
         <AssociationConnector Association="TeaCompanyModel.FK_ProductionHistory_User" />
+        <AssociationConnector Association="TeaCompanyModel.FK_User_Role" />
         <AssociationConnector Association="TeaCompanyModel.FK_Sale_Tea" />
         <AssociationConnector Association="TeaCompanyModel.FK_Tea_Type" />
       </Diagram>

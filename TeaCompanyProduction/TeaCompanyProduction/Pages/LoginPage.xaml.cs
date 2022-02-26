@@ -16,9 +16,6 @@ using TeaCompanyProduction.Models;
 
 namespace TeaCompanyProduction.Pages
 {
-    /// <summary>
-    /// Interaction logic for LoginPage.xaml
-    /// </summary>
     public partial class LoginPage : Page
     {
         public LoginPage()
@@ -29,7 +26,7 @@ namespace TeaCompanyProduction.Pages
         private void BLogin_Click(object sender, RoutedEventArgs e)
         {
             var loggedUser = GlobalSettings.DB.User.FirstOrDefault(u => u.Login == TBLogin.Text && u.Password == PBPassword.Password);
-            if(loggedUser == null)
+            if(loggedUser == null || loggedUser.RoleId != 1)
             {
                 MessageBox.Show("Неверный логин или пароль", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;

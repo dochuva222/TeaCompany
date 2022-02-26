@@ -17,6 +17,13 @@
     <Property Name="ProducedQuantity" Type="int" Nullable="false" />
     <Property Name="UserId" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
   <EntityType Name="Sale">
     <Key>
       <PropertyRef Name="Id" />
@@ -64,6 +71,7 @@
     <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="FK_ProductionHistory_Tea">
     <End Role="Tea" Type="Self.Tea" Multiplicity="1" />
@@ -125,9 +133,22 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_User_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="TeaCompanyModelStoreContainer">
     <EntitySet Name="Grade" EntityType="Self.Grade" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductionHistory" EntityType="Self.ProductionHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Sale" EntityType="Self.Sale" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tea" EntityType="Self.Tea" Schema="dbo" store:Type="Tables" />
@@ -152,6 +173,10 @@
     <AssociationSet Name="FK_Tea_Type" Association="Self.FK_Tea_Type">
       <End Role="Type" EntitySet="Type" />
       <End Role="Tea" EntitySet="Tea" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="User" EntitySet="User" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

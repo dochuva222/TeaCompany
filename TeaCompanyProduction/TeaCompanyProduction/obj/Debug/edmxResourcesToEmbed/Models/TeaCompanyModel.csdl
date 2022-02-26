@@ -3,6 +3,7 @@
   <EntityContainer Name="TeaCompanyEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Grade" EntityType="TeaCompanyModel.Grade" />
     <EntitySet Name="ProductionHistory" EntityType="TeaCompanyModel.ProductionHistory" />
+    <EntitySet Name="Role" EntityType="TeaCompanyModel.Role" />
     <EntitySet Name="Sale" EntityType="TeaCompanyModel.Sale" />
     <EntitySet Name="sysdiagrams" EntityType="TeaCompanyModel.sysdiagrams" />
     <EntitySet Name="Tea" EntityType="TeaCompanyModel.Tea" />
@@ -19,6 +20,10 @@
     <AssociationSet Name="FK_ProductionHistory_User" Association="TeaCompanyModel.FK_ProductionHistory_User">
       <End Role="User" EntitySet="User" />
       <End Role="ProductionHistory" EntitySet="ProductionHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Role" Association="TeaCompanyModel.FK_User_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="User" EntitySet="User" />
     </AssociationSet>
     <AssociationSet Name="FK_Sale_Tea" Association="TeaCompanyModel.FK_Sale_Tea">
       <End Role="Tea" EntitySet="Tea" />
@@ -48,6 +53,14 @@
     <Property Name="UserId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Tea" Relationship="TeaCompanyModel.FK_ProductionHistory_Tea" FromRole="ProductionHistory" ToRole="Tea" />
     <NavigationProperty Name="User" Relationship="TeaCompanyModel.FK_ProductionHistory_User" FromRole="ProductionHistory" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="User" Relationship="TeaCompanyModel.FK_User_Role" FromRole="Role" ToRole="User" />
   </EntityType>
   <EntityType Name="Sale">
     <Key>
@@ -102,7 +115,9 @@
     <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="ProductionHistory" Relationship="TeaCompanyModel.FK_ProductionHistory_User" FromRole="User" ToRole="ProductionHistory" />
+    <NavigationProperty Name="Role" Relationship="TeaCompanyModel.FK_User_Role" FromRole="User" ToRole="Role" />
   </EntityType>
   <Association Name="FK_Tea_Grade">
     <End Type="TeaCompanyModel.Grade" Role="Grade" Multiplicity="1" />
@@ -137,6 +152,18 @@
       </Principal>
       <Dependent Role="ProductionHistory">
         <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Role">
+    <End Type="TeaCompanyModel.Role" Role="Role" Multiplicity="1" />
+    <End Type="TeaCompanyModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RoleId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

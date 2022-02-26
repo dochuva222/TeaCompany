@@ -25,8 +25,10 @@ namespace TeaCompanyProduction.Models
         public string Surname { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
+        public int RoleId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductionHistory> ProductionHistory { get; set; }
+        public virtual Role Role { get; set; }
     }
 }
